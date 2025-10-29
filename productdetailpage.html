@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the image zoom effect (simple example) */
+        .main-img-container {
+            position: relative;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+        .main-img-container img {
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            height: auto;
+        }
+        /* Simple hover zoom */
+        .main-img-container:hover img {
+            transform: scale(1.2);
+        }
+        .thumbnail-img {
+            cursor: pointer;
+            border: 1px solid #dee2e6;
+            margin-bottom: 10px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .thumbnail-img:hover, .thumbnail-img.active {
+            opacity: 1;
+            border-color: #0d6efd;
+        }
+        .footer-link {
+            text-decoration: none;
+            color: #ccc;
+        }
+        .footer-link:hover {
+            color: white;
+        }
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #ccc;
+            transition: color 0.2s;
+        }
+        .social-icon:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header class="sticky-top bg-white border-bottom shadow-sm">
+    <div class="container py-2">
+        <div class="row align-items-center justify-content-between">
+            
+            <div class="col-lg-5 col-8">
+                <nav class="navbar navbar-expand-lg p-0">
+                    <a class="navbar-brand fw-bold fs-3" href="index.html">
+                        <i class="bi bi-shop me-2 text-primary"></i>SHOPNAME
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link fw-bold text-primary" href="productpage.html">Shop</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Account</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="col-4 col-md-6 order-lg-last">
+                <form class="d-flex">
+                    <input class="form-control form-control-sm me-2 d-none d-lg-block" type="search" placeholder="Search products..." aria-label="Search">
+                    <button class="btn btn-sm btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 d-none d-lg-inline-block" type="button"><i class="bi bi-person"></i></button>
+                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" style="color: white;"> <i class="bi bi-cart"></i> <span class="badge bg-danger">3</span></a></button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-4">
+            
+            <div class="col-lg-6">
+                <div class="main-img-container mb-3 border rounded">
+                    <img id="main-product-image" src="https://picsum.photos/600/600?random=1" class="img-fluid rounded" alt="Main Product View">
+                </div>
+                
+                <div class="row g-2">
+                    <div class="col-3">
+                        <img src="https://picsum.photos/150/150?random=1" class="thumbnail-img img-fluid rounded active" alt="Product Thumbnail 1" onclick="document.getElementById('main-product-image').src = this.src.replace('150/150', '600/600')">
+                    </div>
+                    <div class="col-3">
+                        <img src="https://picsum.photos/150/150?random=2" class="thumbnail-img img-fluid rounded" alt="Product Thumbnail 2" onclick="document.getElementById('main-product-image').src = this.src.replace('150/150', '600/600')">
+                    </div>
+                    <div class="col-3">
+                        <img src="https://picsum.photos/150/150?random=3" class="thumbnail-img img-fluid rounded" alt="Product Thumbnail 3" onclick="document.getElementById('main-product-image').src = this.src.replace('150/150', '600/600')">
+                    </div>
+                    <div class="col-3">
+                        <img src="https://picsum.photos/150/150?random=4" class="thumbnail-img img-fluid rounded" alt="Product Thumbnail 4" onclick="document.getElementById('main-product-image').src = this.src.replace('150/150', '600/600')">
+                    </div>
+                </div>
+                <small class="text-muted mt-2 d-block">Note: Images change on click using JavaScript.</small>
+            </div>
+
+            <div class="col-lg-6">
+                <h1 class="fw-bolder display-5">Ultimate Comfort Hoodie</h1>
+                <div class="d-flex align-items-center mb-3">
+                    <div class="text-warning me-2">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <a href="#customer-reviews" class="text-decoration-none">(154 Reviews)</a>
+                </div>
+
+                <p class="fs-3 mb-0">
+                    <span class="text-muted text-decoration-line-through me-2">
+                        $59.99
+                    </span>
+                    <span class="text-danger fw-bold">
+                        $39.99
+                    </span>
+                </p>
+                <p class="text-success fw-bold mb-3">
+                    🎉 Save 33% today!
+                </p>
+                
+                <hr>
+
+                <h6 class="text-uppercase text-muted">Color: <span class="fw-bold text-dark">Navy Blue</span></h6>
+                <div class="d-flex mb-3">
+                    <button class="btn btn-outline-secondary me-2 rounded-circle p-3 active" style="width: 40px; height: 40px; background-color: navy; border-color: navy;"></button>
+                    <button class="btn btn-outline-secondary me-2 rounded-circle p-3" style="width: 40px; height: 40px; background-color: grey;"></button>
+                    <button class="btn btn-outline-secondary me-2 rounded-circle p-3" style="width: 40px; height: 40px; background-color: black;"></button>
+                </div>
+                
+                <h6 class="text-uppercase text-muted">Size:</h6>
+                <div class="d-flex mb-4">
+                    <input type="radio" class="btn-check" name="size-variant" id="size-s" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark me-2" for="size-s">S</label>
+                    <input type="radio" class="btn-check" name="size-variant" id="size-m" autocomplete="off">
+                    <label class="btn btn-outline-dark me-2" for="size-m">M</label>
+                    <input type="radio" class="btn-check" name="size-variant" id="size-l" autocomplete="off">
+                    <label class="btn btn-outline-dark me-2" for="size-l">L</label>
+                    <input type="radio" class="btn-check" name="size-variant" id="size-xl" autocomplete="off" disabled>
+                    <label class="btn btn-outline-dark me-2" for="size-xl">XL (Out of Stock)</label>
+                </div>
+
+                <p class="fw-bold">
+                    <span class="text-success"><i class="bi bi-check-circle-fill"></i> IN STOCK</span> 
+                    - Only 12 left!
+                </p>
+                
+                <hr>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
+                    <button class="btn btn-primary btn-lg flex-grow-1" type="button">
+                        <i class="bi bi-cart-plus me-1"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-outline-danger btn-lg flex-grow-1" type="button">
+                        <i class="bi bi-bag-check me-1"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">B. Description</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">B. Specifications</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-3 border border-top-0" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p class="lead">
+                            This Ultimate Comfort Hoodie is the perfect blend of style and coziness. Crafted from a premium cotton-poly blend, it offers exceptional softness and durability. Ideal for chilly evenings, casual outings, or just lounging at home. Featuring a double-lined hood and a convenient kangaroo pocket.
+                        </p>
+                        <ul>
+                            <li>Ultra-soft fleece lining</li>
+                            <li>Ribbed cuffs and hem</li>
+                            <li>Machine washable</li>
+                            <li>Available in multiple colors and sizes</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 30%;">Material</th>
+                                    <td>80% Cotton, 20% Polyester</td>
+                                </tr>
+                                <tr>
+                                    <th>Weight</th>
+                                    <td>350 GSM (Grams per Square Meter)</td>
+                                </tr>
+                                <tr>
+                                    <th>Manufacturer</th>
+                                    <td>CozyWear Apparel</td>
+                                </tr>
+                                <tr>
+                                    <th>SKU</th>
+                                    <td>UCH-NAVY-M-4512</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-5">
+
+        <div class="row" id="customer-reviews">
+            <div class="col-12">
+                <h2 class="mb-4">Customer Reviews (154)</h2>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <h1 class="display-3 me-3 fw-bold">4.4</h1>
+                    <div>
+                        <div class="text-warning fs-4">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                        <p class="mb-0 text-muted">Based on 154 ratings</p>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title mb-1">Absolutely love it!</h5>
+                            <small class="text-muted">Reviewed on Oct 20, 2025</small>
+                        </div>
+                        <div class="text-warning mb-2">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text">
+                            The quality is fantastic for the price. It's incredibly soft inside and the navy color is rich. True to size, highly recommend!
+                        </p>
+                        <p class="mb-0"><small class="text-muted">By R***o | Verified Purchase</small></p>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline-primary mt-3">Write a Review</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<hr class="my-5">
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="mb-4 text-center">Suggested Products</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://picsum.photos/450/300?random=5" class="card-img-top" alt="Related Product 1">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Comfy Joggers</h5>
+                        <p class="card-text text-danger fw-bold">$29.99</p>
+                        <a href="#" class="btn btn-sm btn-outline-dark">View Product</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://picsum.photos/450/300?random=6" class="card-img-top" alt="Related Product 2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Winter Socks Pack</h5>
+                        <p class="card-text text-danger fw-bold">$12.50</p>
+                        <a href="#" class="btn btn-sm btn-outline-dark">View Product</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://picsum.photos/450/300?random=7" class="card-img-top" alt="Related Product 3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Basic T-Shirt</h5>
+                        <p class="card-text text-danger fw-bold">$19.00</p>
+                        <a href="#" class="btn btn-sm btn-outline-dark">View Product</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://picsum.photos/450/300?random=8" class="card-img-top" alt="Related Product 4">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Waterproof Jacket</h5>
+                        <p class="card-text text-danger fw-bold">$79.99</p>
+                        <a href="#" class="btn btn-sm btn-outline-dark">View Product</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Contact</a></li>
+                    <li><a href="#" class="footer-link">FAQs</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Legal & Policies</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Return Policy</a></li>
+                    <li><a href="#" class="footer-link">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Stay Connected</h5>
+                <p>Sign up for our latest product updates.</p>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control form-control-sm" placeholder="Your Email" aria-label="Your Email" required>
+                        <button class="btn btn-primary btn-sm" type="submit">Go</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Get in Touch</h5>
+                <p><i class="bi bi-phone me-2"></i> (555) 123-4567</p>
+                <p><i class="bi bi-envelope me-2"></i> support@shopname.com</p>
+                <p><i class="bi bi-geo-alt me-2"></i> 123 Ecom Lane, Retail City</p>
+                <p><a href="#" class="footer-link"><i class="bi bi-chat-dots me-2"></i> Live Chat</a></p>
+                
+                <div class="mt-3">
+                    <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-pinterest"></i></a>
+                </div>
+            </div>
+
+        </div>
+        <hr class="mt-4 mb-3 border-secondary">
+        <div class="text-center text-muted small">
+            &copy; <span id="current-year"></span> SHOPNAME. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

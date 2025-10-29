@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Quantum Electronics</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* General styling for the header */
+        .page-header {
+            padding: 3rem 0;
+            background-color: var(--bs-light); /* Bootstrap light gray */
+            border-bottom: 1px solid var(--bs-gray-200);
+        }
+
+        /* Hero Section Styling (Jumbotron alternative in BS5) */
+        .about-hero {
+            background-color: var(--bs-blue-100); /* Light blue background for emphasis */
+            padding: 5rem 0;
+            margin-bottom: 4rem;
+        }
+
+        /* Mission/Vision Cards */
+        .mission-card {
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        .mission-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .footer-link {
+            text-decoration: none;
+            color: #ccc;
+        }
+        .footer-link:hover {
+            color: white;
+        }
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #ccc;
+            transition: color 0.2s;
+        }
+        .social-icon:hover {
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="sticky-top bg-white border-bottom shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold fs-4 text-primary" href="index.html">
+                <i class="bi bi-bag-fill me-2"></i>ECOM STORE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="productpage.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                    <button class="btn btn-sm btn-outline-secondary ms-2 d-lg-inline-block" type="button"> <a href="userPage.html"> <i class="bi bi-person"></i> </a></button>
+                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" style="color: white;"> <i class="bi bi-cart"></i> <span class="badge bg-danger">3</span></a></button>
+                </form>
+                
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <div class="about-hero text-center">
+        <div class="container">
+            <h2 class="display-5 fw-bold mb-3 text-dark">Pioneering the Future of Tech</h2>
+            <p class="fs-5 text-secondary mx-auto" style="max-width: 800px;">
+                More than just a store, we are a collective of tech enthusiasts dedicated to bringing you the devices that define tomorrow, today.
+            </p>
+        </div>
+    </div>
+
+    <main class="container py-5">
+        
+        <section class="mb-5">
+            <h3 class="text-center text-primary mb-4">Our Journey</h3>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7">
+                    <p class="fs-5 text-dark">
+                        Founded in 2018 by a small group of university graduates, **Quantum Electronics** began with a simple idea: to make cutting-edge technology accessible, understandable, and affordable for everyone. We started in a small garage, testing new gadgets and reviewing specs, driven by a passion for innovation.
+                    </p>
+                    <p class="text-muted">
+                        Today, we partner directly with leading global manufacturers to curate a selection of products that meet our high standards for **quality, design, and performance**. Our journey is one of relentless pursuit—the pursuit of the next best thing for your home and lifestyle. We believe technology should enhance life, not complicate it. Every product listed here is rigorously vetted to ensure it offers real value and seamless integration into your world.
+                    </p>
+                </div>
+                <div class="col-lg-5">
+                    <img src="https://picsum.photos/id/1055/800/600" class="img-fluid rounded shadow-lg" alt="Modern office meeting">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-white rounded-3 shadow-sm mb-5">
+            <h3 class="text-center text-primary mb-5">Our Core Values</h3>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card mission-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-rocket-takeoff-fill text-info fs-1 mb-3"></i>
+                            <h4 class="card-title text-info fw-bold">Our Mission</h4>
+                            <p class="card-text text-muted">To provide curated access to innovative and reliable electronics, supported by expert knowledge and customer-first service.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <div class="card mission-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-lightbulb-fill text-warning fs-1 mb-3"></i>
+                            <h4 class="card-title text-warning fw-bold">Our Vision</h4>
+                            <p class="card-text text-muted">To be the most trusted name in online electronics retail, inspiring customers to embrace the technological evolution with confidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <h3 class="text-center text-primary mb-5">Meet the Team</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 text-center">
+                
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <img src="https://picsum.photos/id/64/300/300" class="img-fluid rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--bs-primary);" alt="Rito, Founder & CEO">
+                        <div class="card-body p-0">
+                            <h5 class="card-title fw-bold mb-1">Rito 🧑‍💻</h5>
+                            <p class="text-muted mb-3">Founder & CEO</p>
+                            <div class="social-links">
+                                <a href="#" class="text-primary me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-linkedin fs-5"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <img src="https://picsum.photos/id/83/300/300" class="img-fluid rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--bs-primary);" alt="Sarah Lee, Chief Product Officer">
+                        <div class="card-body p-0">
+                            <h5 class="card-title fw-bold mb-1">Sarah Lee</h5>
+                            <p class="text-muted mb-3">Chief Product Officer</p>
+                            <div class="social-links">
+                                <a href="#" class="text-primary me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-linkedin fs-5"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <img src="https://picsum.photos/id/1005/300/300" class="img-fluid rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--bs-primary);" alt="Ahmed Hassan, Head of Logistics">
+                        <div class="card-body p-0">
+                            <h5 class="card-title fw-bold mb-1">Ahmed Hassan</h5>
+                            <p class="text-muted mb-3">Head of Logistics</p>
+                            <div class="social-links">
+                                <a href="#" class="text-primary me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-linkedin fs-5"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <img src="https://picsum.photos/id/1027/300/300" class="img-fluid rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; object-fit: cover; border: 4px solid var(--bs-primary);" alt="Elena Petrova, Marketing Director">
+                        <div class="card-body p-0">
+                            <h5 class="card-title fw-bold mb-1">Elena Petrova</h5>
+                            <p class="text-muted mb-3">Marketing Director</p>
+                            <div class="social-links">
+                                <a href="#" class="text-primary me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                                <a href="#" class="text-primary"><i class="bi bi-linkedin fs-5"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="aboutus.html" class="footer-link">About Us</a></li>
+                    <li><a href="#" class="footer-link">Contact</a></li>
+                    <li><a href="faq.html" class="footer-link">FAQs</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Legal & Policies</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Return Policy</a></li>
+                    <li><a href="#" class="footer-link">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Stay Connected</h5>
+                <p>Sign up for our latest product updates.</p>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control form-control-sm" placeholder="Your Email" aria-label="Your Email" required>
+                        <button class="btn btn-primary btn-sm" type="submit">Go</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3">Get in Touch</h5>
+                <p><i class="bi bi-phone me-2"></i> (555) 123-4567</p>
+                <p><i class="bi bi-envelope me-2"></i> support@shopname.com</p>
+                <p><i class="bi bi-geo-alt me-2"></i> 123 Ecom Lane, Retail City</p>
+                <p><a href="#" class="footer-link"><i class="bi bi-chat-dots me-2"></i> Live Chat</a></p>
+                
+                <div class="mt-3">
+                    <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-pinterest"></i></a>
+                </div>
+            </div>
+
+        </div>
+        <hr class="mt-4 mb-3 border-secondary">
+        <div class="text-white text-center small">
+            &copy; <span id="current-year"></span> SHOPNAME. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
