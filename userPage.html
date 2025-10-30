@@ -51,7 +51,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                     <button class="btn btn-sm btn-outline-secondary ms-2 d-lg-inline-block" type="button"> <a href="userPage.html"> <i class="bi bi-person"></i> </a></button>
-                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" style="color: white;"> <i class="bi bi-cart"></i> <span class="badge bg-danger">3</span></a></button>
+                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" style="color: white;"> <i class="bi bi-cart"></i> <span class="badge bg-danger" id="cart-counter">3</span></a></button>
                 </form>
                 
             </div>
@@ -199,7 +199,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-outline-success mt-4"><a href="productpage.html" class="text-success text-decoration-none"> Continue Shopping </a></button>
+                            <a class="btn btn-outline-success mt-4"> Continue Shopping </a>
                         </div>
                     </div>
                     
@@ -296,5 +296,154 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- for DELETE BUTTONS on wishlist tab-pane -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // 1. Select all 'Remove' buttons
+    // The selector targets buttons that have the specific 'title' attribute and
+    // are inside the wishlist tab, making it specific.
+    const removeButtons = document.querySelectorAll('#pills-wishlist button[title="Remove"]');
+
+    // 2. Iterate over each button and attach an event listener
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            // Prevent the default action (though buttons usually don't have one)
+            event.preventDefault();
+
+            // 3. Find the parent element to remove (the whole wishlist card)
+            // Traverse up the DOM to find the parent element with class 'col-md-6'.
+            // This is the container for the single wishlist item.
+            let wishlistItem = this.closest('.col-md-6');
+
+            // 4. Remove the item from the DOM
+            if (wishlistItem) {
+                wishlistItem.remove(); // The .remove() method is clean and modern
+
+                // OPTIONAL: Update the item count display
+                updateWishlistItemCount();
+            }
+        });
+    });
+
+    // Function to update the count displayed in the header
+    function updateWishlistItemCount() {
+        const wishlistContainer = document.querySelector('#pills-wishlist .row.g-3');
+        if (wishlistContainer) {
+            // Count the remaining items (each is in a col-md-6)
+            const remainingItems = wishlistContainer.querySelectorAll('.col-md-6').length;
+
+            // Find the heading element
+            const heading = document.querySelector('#pills-wishlist h3');
+
+            // Update the text content
+            if (heading) {
+                heading.textContent = `My Wishlist (${remainingItems} Item${remainingItems === 1 ? '' : 's'})`;
+
+                // If no items are left, you could display a 'Wishlist is empty' message
+                if (remainingItems === 0) {
+                    // You might want to add a custom message here, for example:
+                    // wishlistContainer.innerHTML = '<p class="text-center py-5">Your wishlist is empty! Start shopping!</p>';
+                }
+            }
+        }
+    }
+});
+    </script>
+    <!-- for ADD TO CART BUTTONS on wishlist tab-pane -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // 1. Select all 'Add to Cart' buttons in the wishlist
+    const addToCartButtons = document.querySelectorAll('#pills-wishlist a.btn-primary');
+    const cartCounter = document.getElementById('cart-counter'); // Assuming your counter has this ID
+
+    // Function to initialize cart in localStorage if it doesn't exist
+    function getCartItems() {
+        const cart = localStorage.getItem('shoppingCart');
+        return cart ? JSON.parse(cart) : [];
+    }
+
+    // Function to save cart to localStorage
+    function saveCartItems(cart) {
+        localStorage.setItem('shoppingCart', JSON.stringify(cart));
+        updateCartCounter();
+    }
+
+    // Function to update the visible cart counter
+    function updateCartCounter() {
+        const cart = getCartItems();
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+        if (cartCounter) {
+            cartCounter.textContent = totalItems;
+        }
+    }
+
+    // 2. Attach click listener to each 'Add to Cart' button
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Stop the default link navigation (#)
+
+            // Find the immediate parent of the button which holds the product details
+            const cardBody = this.closest('.card-body');
+            if (!cardBody) return; // Exit if the structure is not as expected
+
+            // 3. Extract Product Details from the card
+            const productName = cardBody.querySelector('.card-title').textContent;
+            let productPriceText = cardBody.querySelector('.text-danger.fw-bold') ?
+                                   cardBody.querySelector('.text-danger.fw-bold').textContent :
+                                   (cardBody.querySelector('.text-success.fw-bold') ?
+                                    '0.00' : // Example: If price isn't visible, assume a placeholder
+                                    '0.00');
+
+            // Clean the price string (remove '$' and convert to a number)
+            const productPrice = parseFloat(productPriceText.replace(/[^0-9.]/g, ''));
+            const productId = productName.replace(/\s/g, '-').toLowerCase(); // Simple ID generation
+
+            // For the image, we need to go up from the card-body to the row, then into the col-4
+            const cardRow = this.closest('.row.g-0');
+            const productImgSrc = cardRow.querySelector('.col-4 img').src;
+
+            const newItem = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                quantity: 1, // Always add one item at a time from wishlist
+                image: productImgSrc
+            };
+
+            // 4. Add the item to the cart in Local Storage
+            let cart = getCartItems();
+            const existingItem = cart.find(item => item.id === newItem.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1; // Increment quantity if item already exists
+            } else {
+                cart.push(newItem); // Add new item to the cart
+            }
+
+            saveCartItems(cart);
+
+            // OPTIONAL: Provide visual feedback to the user
+            this.textContent = 'Added!';
+            this.classList.remove('btn-primary');
+            this.classList.add('btn-success');
+
+            // Reset the button after a short delay
+            setTimeout(() => {
+                this.textContent = 'Add to Cart';
+                this.classList.remove('btn-success');
+                this.classList.add('btn-primary');
+            }, 1000);
+
+            console.log(`Added "${productName}" to the cart.`);
+        });
+    });
+
+    // Run on load to ensure the counter is correct even if the user refreshes
+    updateCartCounter();
+});
+    </script> 
+
 </body>
 </html>

@@ -65,8 +65,8 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
-                    <button class="btn btn-sm btn-outline-secondary ms-2 d-lg-inline-block" type="button"> <a href="userPage.html"> <i class="bi bi-person"></i> </a></button>
-                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" style="color: white;"> <i class="bi bi-cart"></i> <span class="badge bg-danger">3</span></a></button>
+                    <button class="btn btn-sm btn-primary ms-2 d-lg-inline-block" type="button"> <a href="userPage.html" class="text-white"> <i class="bi bi-person"></i> </a></button>
+                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" class="text-white"> <i class="bi bi-cart"></i> <span class="badge bg-danger" id="cart-counter">3</span></a></button>
                 </form>
                 
             </div>
@@ -287,5 +287,6 @@
     // Automatically set the current year for the copyright notice
     document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
