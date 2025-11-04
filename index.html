@@ -56,7 +56,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="productpage.html">Shop</a>
+                        <a class="nav-link active" aria-current="page" href="product-listing.html">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>
@@ -65,8 +65,8 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
-                    <button class="btn btn-sm btn-primary ms-2 d-lg-inline-block" type="button"> <a href="userPage.html" class="text-white"> <i class="bi bi-person"></i> </a></button>
-                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shoppingCartPage.html" class="text-white"> <i class="bi bi-cart"></i> <span class="badge bg-danger" id="cart-counter">3</span></a></button>
+                    <button class="btn btn-sm btn-primary ms-2 d-lg-inline-block" type="button"> <a href="user-profile.html" class="text-white"> <i class="bi bi-person"></i> </a></button>
+                    <button class="btn btn-sm btn-primary ms-2" type="button"> <a href="shopping-cart.html" class="text-white"> <i class="bi bi-cart"></i> <span class="badge bg-danger" id="cart-counter">0</span></a></button>
                 </form>
                 
             </div>
@@ -86,7 +86,7 @@
                     <a href="#" class="btn btn-danger btn-lg me-2">
                         <i class="bi bi-fire me-2"></i> Explore Deals
                     </a>
-                    <a href="productpage.html" class="btn btn-outline-light btn-lg">
+                    <a href="product-listing.html" class="btn btn-outline-light btn-lg">
                         Shop Now
                     </a>
                 </div>
@@ -232,19 +232,19 @@
             <div class="col-md-3">
                 <h5 class="fw-bold mb-3">Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="aboutus.html" class="footer-link">About Us</a></li>
+                    <li><a href="about-us.html" class="footer-link">About Us</a></li>
                     <li><a href="#" class="footer-link">Contact</a></li>
                     <li><a href="faq.html" class="footer-link">FAQs</a></li>
-                    <li><a href="#" class="footer-link">Blog</a></li>
+                    <li><a href="blog.html" class="footer-link">Blog</a></li>
                 </ul>
             </div>
 
             <div class="col-md-3">
                 <h5 class="fw-bold mb-3">Legal & Policies</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                    <li><a href="#" class="footer-link">Return Policy</a></li>
-                    <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="return-policy.html" class="footer-link">Return Policy</a></li>
+                    <li><a href="terms-of-service.html" class="footer-link">Terms of Service</a></li>
                 </ul>
             </div>
 
@@ -287,6 +287,39 @@
     // Automatically set the current year for the copyright notice
     document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
+
+<!-- <script>
+    // 📢 This script goes on your homepage or global header file!
+
+document.addEventListener('DOMContentLoaded', function() {
+    const homepageCartCounter = document.getElementById('cart-counter');
+
+    // 1. Function to read the count from localStorage and update the UI
+    function refreshHomepageCounter() {
+        // Read the shared counter key set by the Cart Page
+        const savedCount = localStorage.getItem('cartCount') || '0';
+        
+        if (homepageCartCounter) {
+            homepageCartCounter.textContent = savedCount;
+            // Show the counter only if the count is greater than 0
+            homepageCartCounter.style.display = savedCount !== '0' ? 'inline-block' : 'none';
+        }
+    }
+
+    // 2. Event Listener for Cross-Tab/Window Synchronization
+    // The 'storage' event fires whenever a different tab/window modifies localStorage.
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'cartCount') {
+            console.log("Cart updated from another tab/window.");
+            refreshHomepageCounter();
+        }
+    });
+
+    // 3. Initial Load
+    // Call the function immediately when the homepage loads to show the current cart count.
+    refreshHomepageCounter();
+});
+</script> -->
 
 </body>
 </html>
