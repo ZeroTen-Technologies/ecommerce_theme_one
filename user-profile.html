@@ -11,21 +11,21 @@
 
 <style>
     .footer-link {
-            text-decoration: none;
-            color: #ccc;
-        }
-        .footer-link:hover {
-            color: white;
-        }
-        .social-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            color: #ccc;
-            transition: color 0.2s;
-        }
-        .social-icon:hover {
-            color: #fff;
-        }
+        text-decoration: none;
+        color: #ccc;
+    }
+    .footer-link:hover {
+        color: white;
+    }
+    .social-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        color: #ccc;
+        transition: color 0.2s;
+    }
+    .social-icon:hover {
+        color: #fff;
+    }
 </style>
 
 <body>
@@ -89,39 +89,42 @@
                     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <div class="card shadow-sm p-4">
                             <h3 class="mb-4">Profile Management (Personal Info)</h3>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" value="Rito Smith">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" class="form-control" value="rito.s@example.com" disabled>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary mt-3">Update Info</button>
-                                        <a href="#" class="btn btn-link mt-3 text-danger">Change Password</a>
-                                    </div>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Full Name</label>
+                                    <input type="text" class="form-control" value="Rito Smith" disabled>
                                 </div>
-                            </form>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Email</label>
+                                    <input type="email" class="form-control" value="rito.s@example.com" disabled>
+                                </div>
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary mt-3 me-3" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
+                                        Update Info
+                                    </button>
+                                    <button type="button" class="btn btn-link mt-3 text-danger" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                        Change Password
+                                    </button>
+                                </div>
+                            </div>
 
                             <hr class="my-4">
 
                             <h3 class="mb-4">Saved Addresses</h3>
-                            <div class="card mb-3 border-secondary">
+                            <div class="card mb-3 border-secondary" id="address-1">
                                 <div class="card-body">
                                     <h6 class="card-title d-flex justify-content-between">
                                         Primary Shipping Address
                                         <span class="badge bg-success">Default</span>
                                     </h6>
-                                    <p class="card-text mb-1">123 Main Street</p>
-                                    <p class="card-text mb-1">Apartment 4B, Cityville, CA 90210</p>
-                                    <button class="btn btn-sm btn-outline-secondary mt-2 me-2">Edit</button>
-                                    <button class="btn btn-sm btn-outline-danger mt-2">Delete</button>
+                                    <p class="card-text mb-1 address-line-1">123 Main Street</p>
+                                    <p class="card-text mb-1 address-line-2">Apartment 4B, Cityville, CA 90210</p>
+                                    <button class="btn btn-sm btn-outline-secondary mt-2 me-2" data-bs-toggle="modal" data-bs-target="#editAddressModal">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger mt-2" onclick="confirmDeleteAddress(1)">Delete</button>
                                 </div>
                             </div>
-                            <button class="btn btn-outline-primary"><i class="bi bi-plus-circle me-2"></i> Add New Address</button>
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editAddressModal"><i class="bi bi-plus-circle me-2"></i> Add New Address</button>
                         </div>
                     </div>
                     
@@ -201,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-outline-success mt-4"> Continue Shopping </a>
+                            <a href="product-listing.html" class="btn btn-outline-success mt-4"> Continue Shopping </a>
                         </div>
                     </div>
                     
@@ -231,7 +234,7 @@
                                     <span class="badge bg-success">Completed</span>
                                 </li>
                             </ul>
-                            <a href="#" class="btn btn-link mt-3 text-start">View Our Full Return Policy</a>
+                            <a href="return-policy.html" class="btn btn-link mt-3 text-start">View Our Full Return Policy</a>
                         </div>
                     </div>
                 </div>
@@ -297,9 +300,172 @@
     </div>
 </footer>
 
+    <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="updateProfileModalLabel"><i class="bi bi-person-circle me-2"></i> Edit Account Details</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="updateProfileForm" onsubmit="handleModalSubmit(event, 'updateProfileModal')">
+                <div class="mb-3">
+                    <label for="modalFullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="modalFullName" value="Rito Smith" required>
+                </div>
+                <div class="mb-3">
+                    <label for="modalPhone" class="form-label">Phone Number (Optional)</label>
+                    <input type="tel" class="form-control" id="modalPhone" placeholder="(555) 123-4567">
+                </div>
+                <div class="mb-3">
+                    <label for="modalAddress1" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" id="modalAddress1" placeholder="123 Main Street" required>
+                </div>
+                <div class="mb-3">
+                    <label for="modalAddress2" class="form-label">Address Line 2 (Apt, Suite, etc.)</label>
+                    <input type="text" class="form-control" id="modalAddress2" placeholder="Apartment 4B">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="modalCity" class="form-label">City</label>
+                        <input type="text" class="form-control" id="modalCity" placeholder="Cityville" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="modalZip" class="form-label">Zip/Postal Code</label>
+                        <input type="text" class="form-control" id="modalZip" placeholder="90210" required>
+                    </div>
+                </div>
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary fw-bold">Save Changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="changePasswordModalLabel"><i class="bi bi-key-fill me-2"></i> Change Password</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="changePasswordForm" onsubmit="handleModalSubmit(event, 'changePasswordModal')">
+                <div class="mb-3">
+                    <label for="currentPassword" class="form-label">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newPassword" class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" required>
+                    <div class="form-text">Must be at least 8 characters long.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirmNewPassword" required>
+                </div>
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-danger fw-bold">Update Password</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-info text-white">
+            <h5 class="modal-title" id="editAddressModalLabel"><i class="bi bi-geo-alt-fill me-2"></i> Add/Edit Shipping Address</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editAddressForm" onsubmit="handleModalSubmit(event, 'editAddressModal')">
+                <div class="mb-3">
+                    <label for="addressName" class="form-label">Address Name (e.g., Home, Work)</label>
+                    <input type="text" class="form-control" id="addressName" value="Primary Shipping Address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="addressLine1" class="form-label">Street Address</label>
+                    <input type="text" class="form-control" id="addressLine1" value="123 Main Street" required>
+                </div>
+                <div class="mb-3">
+                    <label for="addressLine2" class="form-label">Apt/Suite/Other</label>
+                    <input type="text" class="form-control" id="addressLine2" value="Apartment 4B">
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="addressCity" class="form-label">City</label>
+                        <input type="text" class="form-control" id="addressCity" value="Cityville" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="addressZip" class="form-label">Zip/Postal Code</label>
+                        <input type="text" class="form-control" id="addressZip" value="90210" required>
+                    </div>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultAddressCheck" checked>
+                    <label class="form-check-label" for="defaultAddressCheck">
+                        Set as default shipping address
+                    </label>
+                </div>
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-info fw-bold text-white">Save Address</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function handleModalSubmit(event, modalId) {
+            event.preventDefault(); // Stop the form from submitting and refreshing the page
+
+            // 1. Get the modal instance (requires Bootstrap's JS)
+            const modalElement = document.getElementById(modalId);
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            
+            // 2. Close the modal
+            if (modalInstance) {
+                modalInstance.hide();
+            }
+
+            // 3. Optional: Provide a visual success feedback (e.g., an alert)
+            let actionType = '';
+            if (modalId === 'updateProfileModal') {
+                actionType = 'Profile Info';
+            } else if (modalId === 'editAddressModal') {
+                actionType = 'Address';
+            } else if (modalId === 'changePasswordModal') {
+                actionType = 'Password';
+            }
+
+            alert(actionType + " has been successfully updated! (Front-end demonstration only)");
+            
+            // In a real application, AJAX would be called here.
+        }
+    </script>
+
+    <script>
+        function confirmDeleteAddress(addressId) {
+            if (confirm("Are you sure you want to delete this saved address?")) {
+                // Placeholder for actual deletion logic
+                const addressElement = document.getElementById('address-' + addressId);
+                if (addressElement) {
+                    addressElement.remove();
+                    alert("Address has been deleted.");
+                }
+            }
+        }
+    </script>
     
-    <!-- for DELETE BUTTONS on wishlist tab-pane -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     // 1. Select all 'Remove' buttons
@@ -352,7 +518,7 @@
     }
 });
     </script>
-    <!-- for ADD TO CART BUTTONS on wishlist tab-pane -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     // 1. Select all 'Add to Cart' buttons in the wishlist
@@ -393,10 +559,10 @@
             // 3. Extract Product Details from the card
             const productName = cardBody.querySelector('.card-title').textContent;
             let productPriceText = cardBody.querySelector('.text-danger.fw-bold') ?
-                                   cardBody.querySelector('.text-danger.fw-bold').textContent :
-                                   (cardBody.querySelector('.text-success.fw-bold') ?
-                                    '0.00' : // Example: If price isn't visible, assume a placeholder
-                                    '0.00');
+                                       cardBody.querySelector('.text-danger.fw-bold').textContent :
+                                       (cardBody.querySelector('.text-success.fw-bold') ?
+                                       '0.00' : // Example: If price isn't visible, assume a placeholder
+                                       '0.00');
 
             // Clean the price string (remove '$' and convert to a number)
             const productPrice = parseFloat(productPriceText.replace(/[^0-9.]/g, ''));
